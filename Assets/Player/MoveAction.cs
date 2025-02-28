@@ -42,12 +42,9 @@ public class MoveAction : PlayerAction
         Vector3 moveVector = GetMoveVector(cameraTransform, groundInfo.normal, move);
 
         bool wasBraking = braking;
-
         braking = groundInfo.grounded;
-
         braking &= playerPhysics.speed > rb.sleepThreshold;
-
-        braking &= (braking && brakeTime > 0 && brakeTimer > 0) 
+        braking &= (braking && brakeTime > 0 && brakeTimer > 0)
             || Vector3.Dot(moveVector.normalized, playerPhysics.horizontalVelocity.normalized) < -brakeThreshold;
 
         if (braking)
@@ -59,13 +56,14 @@ public class MoveAction : PlayerAction
         {
             brakeTimer = brakeTime;
         }
+
         if (braking)
         {
             Decelerate(brakeSpeed);
         }
         else if (move.magnitude > 0)
         {
-            if(Vector3.Dot(moveVector.normalized, playerPhysics.horizontalVelocity.normalized) >= (groundInfo.grounded ? -softBrakeThreshold : 0))
+            if (Vector3.Dot(moveVector.normalized, playerPhysics.horizontalVelocity.normalized) >= (groundInfo.grounded ? -softBrakeThreshold : 0))
             {
                 Accelerate(acceleration);
             }
@@ -79,14 +77,15 @@ public class MoveAction : PlayerAction
             Decelerate(deceleration);
         }
 
+        // **Rotate Character Towards Movement Direction**
+        RotateCharacter();
+
         void Accelerate(float speed)
         {
             float maxRadDelta = Mathf.Lerp(minTurnSpeed, maxTurnSpeed, playerPhysics.speed / maxSpeed) * Mathf.PI * Time.deltaTime;
-
             float maxDistDelta = speed * Time.deltaTime;
 
             Vector3 velocity = Vector3.RotateTowards(playerPhysics.horizontalVelocity, moveVector * maxSpeed, maxRadDelta, maxDistDelta);
-
             velocity -= velocity * (Vector3.Angle(playerPhysics.horizontalVelocity, velocity) / 180 * turnDeceleration);
 
             rb.linearVelocity = velocity + playerPhysics.verticalVelocity;
@@ -96,6 +95,18 @@ public class MoveAction : PlayerAction
         {
             rb.linearVelocity = Vector3.MoveTowards(playerPhysics.horizontalVelocity, Vector3.zero, speed * Time.deltaTime)
                 + playerPhysics.verticalVelocity;
+        }
+    }
+
+    void RotateCharacter()
+    {
+        Vector3 horizontalVelocity = playerPhysics.horizontalVelocity;
+        horizontalVelocity.y = 0; // Ignore vertical movement for rotation
+
+        if (horizontalVelocity.sqrMagnitude > 0.01f) // Ensure movement before rotating
+        {
+            Quaternion targetRotation = Quaternion.LookRotation(horizontalVelocity, groundInfo.normal);
+            rb.MoveRotation(Quaternion.Slerp(rb.rotation, targetRotation, maxTurnSpeed * Time.deltaTime));
         }
     }
 
