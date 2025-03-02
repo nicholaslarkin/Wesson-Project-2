@@ -3,7 +3,47 @@ guid: d098609c779afde4eb7801212141401f
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bricks
+    second: {fileID: 2100000, guid: 110a0b22492417b44bd078ba9f2ff2e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bridge_Stone
+    second: {fileID: 2100000, guid: 39ac27298fe841844b26c7b1947562dd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bridge_Trim
+    second: {fileID: 2100000, guid: a2cd3681ec7092745b5cbffc4877cfb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Concrete
+    second: {fileID: 2100000, guid: 36e4dbc6664c27a42bbdd34933fcccf0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: High Bridge
+    second: {fileID: 2100000, guid: 15a50c9c96700dd4eb16aad59baaa53f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood Plank
+    second: {fileID: 2100000, guid: 46c30f4266fb2624a8a5878337a16b46, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: highway railing trim transparent
+    second: {fileID: 2100000, guid: f4c62758a97966643be9b3697710218a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lotta walls
+    second: {fileID: 2100000, guid: f4335cce3bd2b494c8a4fa3328a09bb4, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
