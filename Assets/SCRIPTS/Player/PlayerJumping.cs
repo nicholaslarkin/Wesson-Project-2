@@ -94,10 +94,16 @@ public class PlayerJumping : MonoBehaviour
         if (currentJumps == 0)
         {
             animator.SetBool("isDJ", true);
+            SoundManager.Instance.PlaySFXWithSource(15, 0.15f);
+            SoundManager.Instance.PlaySFXWithSource(16, 0.05f);
+            SoundManager.Instance.PlaySFXWithSource(Random.Range(11, 14), 0.5f);
         }
         else
         {
             animator.SetBool("isDJ", false);
+            SoundManager.Instance.PlaySFXWithSource(15, 0.15f);
+            SoundManager.Instance.PlaySFXWithSource(16, 0.05f);
+            SoundManager.Instance.PlaySFXWithSource(Random.Range(7, 10), 0.5f);
         }
 
         // Apply the jump force

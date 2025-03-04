@@ -12,6 +12,9 @@ public class PlayerBoosting : MonoBehaviour
     public GameObject flamethrowerL;
     public GameObject flamethrowerR;
 
+    public GameObject boostStart;
+    public GameObject boostLoop;
+
     private PlayerMovement playerMovement;
 
     private void Start()
@@ -37,6 +40,10 @@ public class PlayerBoosting : MonoBehaviour
 
     private void StartBoosting()
     {
+        SoundManager.Instance.PlaySFXWithSource(Random.Range(0, 7), 0.5f);
+        SoundManager.Instance.PlaySFXWithSource(16, 0.2f);
+        boostStart.SetActive(true);
+        boostLoop.SetActive(true);
         animator.SetBool("isBoosting", true);
         sparkL.SetActive(true);
         sparkR.SetActive(true);
@@ -47,6 +54,8 @@ public class PlayerBoosting : MonoBehaviour
 
     private void StopBoosting()
     {
+        boostStart.SetActive(false);
+        boostLoop.SetActive(false);
         animator.SetBool("isBoosting", false);
         sparkL.SetActive(false);
         sparkR.SetActive(false);
