@@ -67,25 +67,22 @@ public class PlayerMovement : MonoBehaviour
 
     void ApplyMovement()
     {
-        Vector3 moveDirection = new Vector3(move.x, 0, move.y).normalized;  // Convert Vector2 to Vector3 for movement
+        // Calculate the move direction relative to the camera
+        Vector3 cameraForward = playerCamera.forward;
+        Vector3 cameraRight = playerCamera.right;
+
+        cameraForward.y = 0;
+        cameraRight.y = 0;
+
+        cameraForward.Normalize();
+        cameraRight.Normalize();
+
+        // Determine the intended move direction based on input and camera direction
+        Vector3 moveDirection = (cameraForward * move.y + cameraRight * move.x).normalized;
 
         if (isGrounded)
         {
-            // Get the forward and right directions based on the camera
-            Vector3 cameraForward = playerCamera.forward;
-            Vector3 cameraRight = playerCamera.right;
-
-            // Ignore vertical component for both vectors
-            cameraForward.y = 0;
-            cameraRight.y = 0;
-
-            cameraForward.Normalize();
-            cameraRight.Normalize();
-
-            // Combine input with camera orientation
-            moveDirection = (cameraForward * move.y + cameraRight * move.x).normalized;
-
-            // Apply movement force
+            // Apply movement force on the ground
             rb.AddForce(moveDirection * acceleration, ForceMode.Acceleration);
 
             // Apply friction when no input
@@ -103,11 +100,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            // Air control with less influence
+            // Apply air control using the same camera-relative move direction
             rb.AddForce(moveDirection * acceleration * airControl, ForceMode.Acceleration);
         }
 
-        // Limit max speed on ground
+        // Limit max speed
         Vector3 horizontalVelocity = new Vector3(rb.linearVelocity.x, 0, rb.linearVelocity.z);
         if (horizontalVelocity.magnitude > maxSpeed)
         {

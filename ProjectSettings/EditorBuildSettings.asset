@@ -5,9 +5,27 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Field.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Scenes/Title Screen.unity
+    guid: 271cc63f3ca1de94090030aefe22b155
+  - enabled: 1
+    path: Assets/Scenes/Field (Day).unity
+    guid: b0cec18e9c8b33e4dad75468eebaaa26
+  - enabled: 1
+    path: Assets/Scenes/Field (Sunset).unity
+    guid: 0843e1a0b7cd54641a0016c2ddac8ca2
+  - enabled: 1
+    path: Assets/Scenes/Field (Night).unity
+    guid: 49c2068ca1cb6b74faa2b4c49d4f1cc5
+  - enabled: 1
+    path: Assets/Scenes/House.unity
+    guid: 637f698e043a89b4aa1ade89c30d307e
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: f68c1ed045f00744a880a7950e26e29c
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
