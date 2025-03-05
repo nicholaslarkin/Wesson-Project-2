@@ -33,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.useGravity = false; // We handle gravity manually
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
